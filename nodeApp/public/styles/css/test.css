@@ -1,0 +1,102 @@
+.testPaper{
+    margin: 5px 10px 30px;
+}
+.quesHeading {
+    padding: 20px 0 !important;
+}
+.quesElements {
+    padding: 20px 0px;
+}
+.timingLabel {
+    margin-left: 30px;
+}
+li {
+    text-decoration: none;
+    list-style: none;
+}
+.testLabel {
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+.testPaperBody {
+    padding: 0px 20px;
+}
+.guessLabel {
+    margin-left: 30px;
+}
+.smart-form .testCheckbox i, .smart-form .testRadio i{
+    width: 18px;
+    height: 18px;
+}
+.quesOptions {
+    margin-bottom: 30px;
+}
+.quesOptions li{
+    padding: 10px 0px;
+}
+.quesOptions label{
+    font-size: 14px !important;
+}
+.testRadio {
+    padding-left: 40px !important;
+/*    display: flex;
+    align-items: center;
+    justify-content: flex-start;*/
+}
+.quesContent {
+    font-size: 16px !important;
+}
+.studentOpinions {
+    padding: 30px 0;
+}
+.quesCounterLabel {
+    margin-left: 30px;
+}
+.timerKnob>div{
+    border: none;
+}
+.timerKnob {
+    position: absolute;
+    z-index: 1;
+}
+.timerKnobContainer {
+    height: 80px;
+}
+.knobs-demo:before {
+    content: attr(data-time);
+    position: absolute;
+    top: 50%;
+    line-height: 40px;
+    margin-top: -20px;
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 16px;
+    font-family: Arial;
+    color: rgb(66, 139, 202);
+    padding: 0px;
+    -webkit-appearance: none;
+    background: none;
+}
+.text-red:before {
+    color: #953b39;
+    font-weight: bold;
+}
+.knobs-demo:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    background: transparent;
+    top: 0px;
+    left: 0px;
+}

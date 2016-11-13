@@ -1,0 +1,121 @@
+<link rel="stylesheet" type="text/css" media="screen" href="styles/css/test.css">
+<div id="with-paging-widget" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-color="orange" data-jarvis-widget class="testPaper">
+    <!-- widget options:
+        usage: <div data-jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+    -->
+    <header>
+        <h2><strong>{{ques.heading}}</strong> </h2>
+        <div class="widget-toolbar">
+            <ul class="pagination pagination-xs">
+                <li class="disabled">
+                    <a href-void>Prev</a>
+                </li>
+                <li>
+                    <a href-void ng-click="ques.submit()">Next</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- widget div-->
+    <div>
+        <!-- widget content -->
+        <div class="widget-body ">
+            <p class="alert alert-success" ng-show="ques.nextBtnClicked && ques.isCorrect"> <strong><i class="fa fa-check"></i> Correct !</strong> Answer </p>
+            <p class="alert alert-danger" ng-show="ques.nextBtnClicked && !(ques.isCorrect)"> <strong><i class="fa fa-times"></i> Wrong !</strong> Answer </p>
+            <div class="testPaperBody">
+                <div class="row">
+                    <div class="label-primary testLabel col-sm-offset-0 col-sm-3"><span class="">Question Time : <strong>{{ques.quesTime}} sec</strong>  </span></div>
+                    <div class="label-primary testLabel col-sm-offset-1 col-sm-3"><span class="">Question Marks : <strong>{{ques.marks}} marks </strong> </span></div>
+                    <!--  <div class="label-primary testLabel col-sm-offset-1 col-sm-3"><span class="">Time Elapsed : <strong>{{ques.timeElapsed | uppercase}} mins </strong> </span></div> -->
+                    <div class="col-sm-offset-2 col-sm-3 timerKnobContainer">
+                        <!-- Widget ID (each widget will need unique ID)-->
+                        <div jarvis-widget id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false" class="timerKnob">
+                            <!-- widget div-->
+                            <div>
+                                <!-- widget content -->
+                                <div class="widget-body">
+                                    <form>
+                                        <fieldset>
+                                            <div class="knobs-demo" data-time="{{ques.timeElapsed | secondsToDateTime | date:'HH:mm:ss'}}">
+                                                <div>
+                                                    <input data-smart-knob data-width="120" data-height="120" data-displayInput=false class="timeElapsedKnob" value="0" data-fgColor="#428BCA" data-displayPrevious=true>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <!-- end widget content -->
+                            </div>
+                            <!-- end widget div -->
+                        </div>
+                        <!-- end widget -->
+                    </div>
+                </div>
+                <h2>Question : <strong>{{ques.quesNo}}</strong></h2>
+                <p class="quesContent">{{ques.quesContent}} |</p>
+                <form class="smart-form">
+                    <h4>Options</h4>
+                    <ul class="quesOptions">
+                        <li ng-repeat="option in ques.options">
+                            <label class="radio testRadio">
+                                <input type="radio" ng-model="ques.optionSelected" value="{{option.no}}" name="radio"><i></i>({{option.no}}) {{option.content}}
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="row studentOpinions">
+                        <div class="col-sm-3">
+                            <label class="toggle state-success guessLabel">
+                                <strong>Is this a guess ?</strong>
+                                <input type="checkbox" name="guessRadio" checked="checked" ng-model="ques.guess">
+                                <i data-swchon-text="Yes" data-swchoff-text="No"></i>
+                            </label>
+                        </div>
+                        <div class="inline-group col-sm-8 pull-right" jarvis-widget id="wid-id-5" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+                            <!--                             <form>
+                                <p><strong>How difficult is the question for you ?</strong></p>
+                            </form> -->
+                            <label class="radio testRadio">
+                                <input ng-model="ques.difficulty" value="4" type="radio" name="difficultyRadio"><i></i>Very Difficult
+                            </label>
+                            <label class="radio testRadio">
+                                <input ng-model="ques.difficulty" value="3" type="radio" name="difficultyRadio"><i></i> Difficult
+                            </label>
+                            <label class="radio testRadio">
+                                <input ng-model="ques.difficulty" value="2" type="radio" name="difficultyRadio" checked="checked"><i></i> Moderate
+                            </label>
+                            <label class="radio testRadio">
+                                <input ng-model="ques.difficulty" value="1" type="radio" name="difficultyRadio"><i></i> Easy
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label-primary testLabel col-sm-offset-0 col-sm-3 quesCounterLabel">
+                            <span class="">Question  Attempted <strong>{{ques.attempt}}</strong>  out of <strong> {{ques.total}}</strong> </span>
+                        </div>
+                        <div class="label-warning testLabel col-sm-offset-0 col-sm-4 timingLabel">
+                            <span class="">Time Remaining <strong>{{ques.timeRem | secondsToDateTime | date:'HH:mm:ss'}} </strong>  out of <strong> {{ques.timeTotal | secondsToDateTime | date:'HH:mm:ss'}}</strong> </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget-footer">
+                <!--                 <button class="btn btn-sm btn-success disabled" type="button">
+                    Previous
+                </button>-->
+                <button class="btn btn-sm btn-success" type="button" ng-click="ques.submit()">
+                    Next
+                </button>
+            </div>
+        </div>
+        <!-- end widget content -->
+    </div>
+    <!-- end widget div -->
+</div>

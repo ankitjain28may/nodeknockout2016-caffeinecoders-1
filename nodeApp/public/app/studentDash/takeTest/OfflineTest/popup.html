@@ -1,0 +1,78 @@
+<style>
+.ngdialog-theme-default {
+    padding-top: 80px !important;
+}
+
+.ngdialog-overlay {
+    right: 0 !important;
+}
+</style>
+<div class="no-padding">
+    <h1 class="text-center">
+        Instructions
+    </h1>
+    <hr>
+    <ol>
+        <li>MyTARGETplus provides a very adaptive platform to learn and improve upon your skills. The assessments are designed keeping in mind to help students improve upon their efficiency and performance. Offline version of mytargetplus help schools evaluate your performance in a more systematic manner and plan up a smart study plan for you.</li>
+        <li>Kindly submit your answers by selecting the write option for each question.</li>
+        <li>We also give you a tip for selecting a wrong question and a second chance to improve upon your mistakes.</li>
+    </ol>
+    <form id="smart-form-register" name="formName" class="smart-form" data-smart-registration-form>
+        <footer>
+            <button type="submit" class="btn btn-primary" ng-click="offstartTest(closeThisDialog,0)">
+                Proceed for Test
+            </button>
+        </footer>
+    </form>
+</div>
+
+<!-- <header id="pageheader">
+    <section class="col-sm-6">
+        <div class="pageheadertitle">Offline Test Papers</div>
+    </section>
+</header>
+<div class="content">
+    <article class="col-sm-12">
+        <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+            <div>
+                <div class="widget-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                            <thead>
+                                <tr>
+                                    <th data-sort-ignore="true">Test Paper Name</th>
+                                    <th data-sort-ignore="true">Total Marks</th>
+                                    <th data-sort-ignore="true">Time (hh:mm:ss)</th>
+                                    <th data-sort-ignore="true">Total Questions </th>
+                                    <th data-sort-ignore="true">Questions Attempted</th>
+                                    <th data-sort-ignore="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="paper in testpapers | orderBy:'_id':true" my-directive>
+                                    <td>{{paper.testPaperName }}</td>
+                                    <td>{{paper.totalMarks }}</td>
+                                    <td>{{paper.totalTime | secondsToDateTime | date:'HH:mm:ss' }}</td>
+                                    <td>{{paper.totalQuestions }}</td>
+                                    <td>{{attemptedQues(paper) }}</td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+            </div>
+         </div>
+        </div>
+        </div>
+    </article>
+
+        <div>
+            <ul>{{paper.questionDescription}}
+             <li>
+                 {{}}   
+             </li>
+             
+            </ul>
+                
+            
+        </div>
+
+ </div> --> 

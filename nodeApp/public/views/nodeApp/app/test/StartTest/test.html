@@ -1,0 +1,176 @@
+console.log();<link rel="stylesheet" type="text/css" media="screen" href="styles/css/test.css">
+<div id="content">
+    <div class="col-md-12 col-centered" style=" font-size: 24px;">{{testpaper.testPaperName}}</div>
+    <br>
+    <div id="with-paging-widget" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-color="orange" data-jarvis-widget class="testPaper">
+        <!-- widget options:
+        usage: <div data-jarvis-widget id="wid-id-0" data-widget-editbutton="false">
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+    -->
+        <header>
+            <h2><strong>Question 1 </strong> </h2>
+            <div class="widget-toolbar">
+                Time: {{ ques.timeAlotted | secondsToDateTime | date:'HH:mm:ss'}}
+            </div>
+            <div class="widget-toolbar">
+                Marks: {{ques.maxMarks}}
+            </div>
+        </header>
+        <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+                <p class="alert alert-success"> <strong><i class="fa fa-clock-o"></i>  Time Elapsed : </strong>{{ pc | secondsToDateTime | date:'HH:mm:ss'}} </p>
+                <p class="padding-10" style="font-size:16px;"> {{ques.questionText}}</p>
+                <div class="widget-footer test-info">
+                    <p class="pull-left">Total Time Elapsed : {{ qc | secondsToDateTime | date:'HH:mm:ss'}} - out of {{ testpaper.totalTime | secondsToDateTime | date:'HH:mm:ss'}}</p>
+                    <p class="pull-right">Questions Attempted : <i>1 out of {{testpaper.totalQuestions}}</i> </p>
+                </div>
+                <div class="alert alert-success fade in" ng-if="ques.answer == 'correct'" ng-cloak>
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-check"></i>
+                    <strong>Correct Answer!</strong>
+                </div>
+                <div class="alert alert-danger fade in" ng-if="ques.answer == 'wrong'" ng-cloak>
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-times"></i>
+                    <strong>Wrong Answer!</strong>
+                </div>
+                <div class="alert alert-info fade in" ng-if="attempt == 1 && ques.answer == 'wrong'" ng-cloak>
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-info"></i>
+                    <strong>Tips : </strong> {{ques.tipsText}}
+                </div>
+                <div class="alert alert-success fade in" ng-if="ques.answer == 'correct' || (ques.answer == 'wrong' && attempt == 2)" ng-cloak>
+                    <button class="close" data-dismiss="alert">
+                        ×
+                    </button>
+                    <i class="fa-fw fa fa-check"></i>
+                    <strong>Solution : {{ques.ansText}}</strong>
+                </div>
+            </div>
+            <!-- end widget content -->
+            <!-- widget content -->
+            <br>
+            <div class="widget-body no-padding">
+                <form class="smart-form">
+                    <header>
+                        Options :
+                    </header>
+                    <fieldset ng-show="qc > ques.timeAlotted/2" ng-cloak>
+                        <!--<fieldset ng-cloak> -->
+                        <section>
+                            <div class="row">
+                                <div class="col col-2">
+                                </div>
+                                <div class="col col-8">
+                                    <div class="checkbox">
+                                        A
+                                        <label>
+                                            <input type="checkbox" class="checkbox style-0" ng-model="A.checked" checked="A.checked">
+                                            <span>{{ques.AText}}</span>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="checkbox">
+                                        B
+                                        <label>
+                                            <input type="checkbox" class="checkbox style-0" ng-model="B.checked" checked="B.checked">
+                                            <span>{{ques.BText}}</span>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="checkbox">
+                                        C
+                                        <label>
+                                            <input type="checkbox" class="checkbox style-0" ng-model="C.checked" checked="C.checked">
+                                            <span>{{ques.CText}}  </span>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="checkbox">
+                                        D
+                                        <label>
+                                            <input type="checkbox" class="checkbox style-0" ng-model="D.checked" checked="D.checked">
+                                            <span>{{ques.Dtext}}</span>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="checkbox">
+                                        E
+                                        <label>
+                                            <input type="checkbox" class="checkbox style-0" ng-model="E.checked" checked="E.checked">
+                                            <span>{{ques.Etext}}</span>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </section>
+                    </fieldset>
+                </form>
+                <div class="widget-footer test-info-footer">
+                    <div class="pull-left">
+                        <form class="smart-form">
+                            <label class="toggle state-success guessLabel">
+                                <strong>Is this a guess ?</strong>
+                                <input ng-disabled="qc < ques.TimeAlotted/2" type="checkbox" name="guessRadio" checked="checked" ng-model="ques.guess">
+                                <i data-swchon-text="Yes" data-swchoff-text="No"></i>
+                            </label>
+                        </form>
+                    </div>
+                    <p class="pull-right"> </p>
+                </div>
+                <div class="test-box">
+                    <form class="smart-form">
+                        <fieldset>
+                            <section>
+                                <label class="label">How difficult is the question for you?</label>
+                                <div class="inline-group">
+                                    <label class="radio">
+                                        <input type="radio" name="radio-inline">
+                                        <i></i>Very Difficult</label>
+                                    <label class="radio">
+                                        <input type="radio" name="radio-inline">
+                                        <i></i>Difficult</label>
+                                    <label class="radio">
+                                        <input type="radio" name="radio-inline" checked="checked">
+                                        <i></i>Moderate</label>
+                                    <label class="radio">
+                                        <input type="radio" name="radio-inline">
+                                        <i></i>Easy</label>
+                                </div>
+                            </section>
+                        </fieldset>
+                    </form>
+                    <form class="smart-form">
+                        <div class="row">
+                            <div class="col col-md-5 col-sm-5">
+                            </div>
+                            <div class="col col-md-2 col-sm-2">
+                                <button ng-hide="ques.answer == 'correct' || attempt == 2" ng-disabled="qc < ques.TimeAlotted/2" class="btn btn-success btn-block btn-sm" ng-click="checkAnswer()" ng-cloak>Submit</button>
+                                <button ng-if="ques.answer == 'correct' || (ques.answer == 'wrong' && attempt == 2)" class="btn btn-primary btn-block btn-sm" ng-click="returnToTopics()" ng-cloak>Return to Topics!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <!-- end widget content -->
+        <!-- end widget div -->
+    </div>
+</div>

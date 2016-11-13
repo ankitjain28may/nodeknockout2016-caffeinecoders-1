@@ -1,0 +1,60 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['L e a r n i n g', 'Exam Mode']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+</div>
+    <article class="col-sm-12">
+        <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+            <div>
+                <div class="widget-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                            <thead>
+                                <tr>
+                                    <th data-sort-ignore="true">Test Paper Name</th>
+                                    <th data-sort-ignore="true">Total Marks</th>
+                                    <th data-sort-ignore="true">Time (hh:mm:ss)</th>
+                                    <th data-sort-ignore="true">Total Questions </th>
+                                    <th data-sort-ignore="true">Questions Attempted</th>
+                                    <th data-sort-ignore="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="paper in testpapers | orderBy:'_id':true"  my-directive>
+                                    <td>{{paper.testPaperName }}</td>
+                                    <td>{{paper.totalMarks }}</td>
+                                    <td>{{paper.totalTime | secondsToDateTime | date:'HH:mm:ss' }}</td>
+                                    <td>{{paper.totalQuestions }}</td>
+                                    <td>{{attemptedQues(paper) }}</td>
+                                    <td align="right" width="210px">
+                                        <div class="btn-group" ng-show="paper.status === 'start'">
+                                            <a href-void ng-click="openModal(paper)" class="btn btn-xs btn-success bg-color-blue"> <i class="fa fa-file-text"></i> Start Test</a>
+                                        </div>
+                                        <div class="btn-group" ng-show="paper.status === 'paused'">
+                                            <a href="/#/test/starttest/{{paper._id}}/0" class="btn btn-xs btn-success bg-color-orange"> <i class="fa fa-edit"></i> Continue</a>
+                                        </div>
+                                        <div class="btn-group" ng-show="paper.status === 'finished' || paper.status === 'paused'">
+                                            <a ui-sref="app.student.htmlReport({studentID: paper.studentID, testpaperID: paper.testpaperID})" target="_blank" class="btn btn-xs btn-success bg-color-magenta"> <i class="fa fa-edit"></i> View Report</a>
+                                        </div>
+                                        <!-- <div class="btn-group">
+                                            <a href-void ng-click="removePaper(paper._id)" class="btn btn-xs btn-danger"> <i class="fa fa-remove"></i> Delete</a>
+                                        </div> -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                            </tbody>
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="6" align="center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

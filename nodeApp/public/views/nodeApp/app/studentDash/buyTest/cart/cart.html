@@ -1,0 +1,109 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Checkout', 'Cart']" icon="table"
+                     class="col-sm-6"></big-breadcrumbs>
+</div>
+    <section widget-grid id="widget-grid">
+        <div class="row">
+            <article class="col-sm-12">
+                <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+                    <div>
+                        <div class="widget-body no-padding">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Test Name / Cash Card</th>
+                                            <th>Test Price</th>
+                                            <th>Special Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="paper in testpapers | filter: query | filter: selectPrice | itemsPerPage : 10  track by $index">
+                                            <td>{{ $index+1 }}</td>
+                                            <td>{{paper.name}}</td>
+                                            <td>
+                                                <del class="text-danger">₹ {{paper.oldprice}}</del>
+                                            </td>
+                                            <td>₹ {{paper.price}}</td>
+                                            <td>
+                                                <div class="btn-group pull-right">
+                                                    <button ng-click="removeFromCart(paper)" class="btn btn-danger removeBtn"> <i class="fa fa-remove"></i> Remove</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <dir-pagination-controls ng-show="testpapers.length > 10">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <form id="smart-form-register" name="formName" class="smart-form" novalidate>
+        <fieldset>
+            <section class="col-sm-12">
+                <label class="col-sm-3 pull-right">
+                    <h2 class="pull-right">Original Bill : ₹  {{ bill.initial }}</h2>
+                </label>
+            </section>
+            <section class="col-sm-12" ng-repeat="couponData in couponsData">
+                <label class="input col-sm-3"> <i class="icon-append fa fa-barcode"></i>
+                    <input type="text" ng-model="couponData.couponCode" name="couponCode" placeholder="Coupon Code" required>
+                    <b class="tooltip tooltip-bottom-right">Apply Coupon Code to avail discount</b>
+                </label>
+                &nbsp;
+                <label class="col-sm-1">
+                </label>
+                <label class="col-sm-2" ng-show="couponData.couponApplied">
+                    <h4 class="pull-left">Coupon Bal : <strong>₹  {{ couponData.price }}</strong></h4>
+                </label>
+                &nbsp; &nbsp; &nbsp;
+                <label class="col-sm-2" ng-show="couponData.couponApplied">
+                    <h4 class="pull-left">Bal Left : <strong>₹  {{ couponData.coupon[0].balance }}</strong></h4>
+                </label>
+                <label class="col-sm-2">
+                    <a style="padding: 4px 8px;" class="btn pull-left btn-primary" ng-click="applyCoupon(couponData)" ng-hide="couponData.couponApplied">Apply</a> &nbsp;&nbsp;
+                    <a style="padding: 4px 8px;" class="btn pull-left btn-danger" ng-click="removeCoupon(couponData)" ng-show="couponData.couponApplied">Remove</a>
+                </label>
+                <label class="col-sm-1 pull-right" ng-show="couponData.couponApplied">
+                    <h3 class="pull-right text-danger">- ₹  {{ couponData.discount }}</h3>
+                </label>
+            </section>
+            <section class="col-sm-12">
+                <a style="padding: 6px 12px;" class="btn pull-left btn-primary" ng-click="appendCoupon()">Add</a>
+            </section>
+            <section class="col-sm-12">
+                <label class="col-sm-3 pull-right">
+                    <h2 class="pull-right">Total Bill : ₹  {{ bill.final }}</h2>
+                </label>
+            </section>
+        </fieldset>
+        <footer>
+            <div ng-show="testpapers.length > 0">
+                <button class="btn btn-success btn-lg" ng-click="checkout()" ng-hide="bill.final == 0">Checkout </button>
+                <button class="btn btn-success btn-lg" ng-click="buyTest()" ng-show="bill.final == 0">Buy </button>
+                <!-- <button class="btn pull-left btn-primary" ng-click="applyCoupon(formName)">Apply Coupon</button>
+            <a class="btn pull-left btn-danger" ng-click="removeCoupon()">Remove Coupon</a> -->
+            </div>
+        </footer>
+    </form>
+</div>
+<form method="POST" id="myForm" action="https://secure.payu.in/_payment">
+    <input type="hidden" name="hash" value="{{hash}}" />
+    <input type="hidden" name="key" value="{{key}}" />
+    <input type="hidden" name="txnid" value="{{txnid}}" />
+    <input type="hidden" name="amount" value="{{amount}}" />
+    <input type="hidden" name="productinfo" value="{{productinfo}}" />
+    <input type="hidden" name="firstname" value="{{firstname}}" />
+    <input type="hidden" name="email" value="{{email}}" />
+    <input type="hidden" name="phone" value="{{phone}}" />
+    <input type="hidden" name="surl" value="{{surl}}" />
+    <input type="hidden" name="furl" value="{{furl}}" />
+    <input type="hidden" name="service_provider" value="payu_paisa" />
+</form>

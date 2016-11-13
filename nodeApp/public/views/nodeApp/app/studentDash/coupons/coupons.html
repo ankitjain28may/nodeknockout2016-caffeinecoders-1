@@ -1,0 +1,42 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Coupons', 'My Coupons']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+</div>
+  <section widget-grid id="widget-grid">
+    <div class="row">
+      <article class="col-sm-12">
+        <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+          <div>
+            <div class="widget-body no-padding">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Coupons Name</th>
+                      <th>Coupons Code</th>
+                      <th>Coupon Balance</th>
+                      <th>Balance Remaining</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr dir-paginate="coupon in coupons | filter: query | filter: selectPrice : true| itemsPerPage : 10  track by $index">
+                      <td>{{ $index+1 }}</td>
+                      <td>{{ coupon.name }}</td>
+                      <td>{{ coupon.code }}</td>
+                      <td>{{ coupon.price }}</td>
+                      <td>{{ coupon.balance }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <dir-pagination-controls  ng-show="coupons.length > 10">
+            </dir-pagination-controls>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,64 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Reports', 'My Reports']" icon="table"
+                     class="col-sm-6"></big-breadcrumbs>
+    <section class="col-sm-6">
+        <form id="smart-form-register" name="formName" ng-submit="upload(formName)" class="smart-form" data-smart-registration-form>
+            <label class="input">
+                <i class="icon-append fa fa-search"></i>
+                <input type="text" ng-model="query" name="search" placeholder="Search Reports">
+                <b class="tooltip tooltip-bottom-right">Search Reports</b>
+            </label>
+        </form>
+    </section>
+</div>
+    <article class="col-sm-12">
+        <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+            <div>
+                <div class="widget-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                            <thead>
+                                <tr>
+                                    <th data-sort-ignore="true">Test Paper Name</th>
+                                    <th data-sort-ignore="true">Total Questions </th>
+                                    <th data-sort-ignore="true">Total Marks</th>
+                                    <th data-sort-ignore="true">Time (hh:mm:ss)</th>
+                                    <th data-sort-ignore="true" width="210px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="paper in testpapers | filter:query |orderBy:'_id':true" my-directive>
+                                    <td>{{paper.testPaperName }}</td>
+                                    <td>{{paper.totalQuestions }}</td>
+                                    <td>{{paper.totalMarks }}</td>
+                                    <td>{{paper.totalTime | secondsToDateTime | date:'HH:mm:ss' }}</td>
+                                    <td align="right" width="230px">
+                                        <div class="btn-group">
+                                            <a ui-sref="app.student.htmlReport({studentID: paper.studentID, testpaperID: paper.testpaperID})"  class="btn btn-xs btn-success bg-color-orange"> <i class="fa fa-file-text"></i> View Report</a>
+                                            <a ng-href="{{paper.report}}" target="_blank" class="btn btn-xs btn-success bg-color-blue"> <i class="fa fa-file-text"></i> Download Report</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                            <tr ng-if="testpapers==''"><td></td><td>Kindly Complete Test To View Report</td></tr>
+                            </tbody>
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="6" align="center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<!-- 
+
+<a class="btn btn-default" target="_blank" href="http://45.55.228.207:52295/topdf/">View Reports</a>
+<button ng-click="reset()">reset</button> -->

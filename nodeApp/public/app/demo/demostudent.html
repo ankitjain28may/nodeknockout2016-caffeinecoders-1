@@ -1,0 +1,54 @@
+<style>
+    #content>.row {
+        margin: 0;
+    }
+</style>
+<header id="pageheader">
+    <section class="col-sm-10">
+        <div class="pageheadertitle">Buy a Test Paper</div>
+    </section>
+</header>
+<div id="content-header">
+    <section class="row">
+        <section style=" left:2%" class="col-sm-3">
+            <a ui-sref="app.demo-cart" class="btn btn-default shop-btn">
+                <i class="fa fa-1x fa-shopping-cart"></i>
+                <span class="air air-top-right label-danger txt-color-white padding-3 ">{{itemNum || 0}}
+                </span>
+            </a>
+        </section>
+        <section class="col-sm-3"> 
+            <select class="form-control" ng-model="cls.Id" required ng-options="s.classID as s.className for s in class">
+            <option value="">-- All Classes are Selected --</option>
+            </select>
+        </section> 
+        <section class="col-sm-3"> 
+                    <select class="form-control"  ng-model="board.Id" required ng-options="s.boardId as s.name for s in board">
+            <option value="">-- All Boards are Selected --</option>
+            </select>
+        </section>
+        <section style="width: 24%;" class="col-sm-2 pull-right">
+            <!-- <span>Select a Subject</span> -->
+            <select class="form-control"  ng-model="sub.Id">
+            <option value="">-- All Subjects are Selected --</option>
+                <option ng-value="sub.Id" ng-repeat="sub in subject">{{sub.Name}}</option>
+            </select>
+        </section>
+    </section>
+</div>
+<div id="content" style="padding-top: 2px !important;">
+    <div class="row">
+    <div ng-repeat="paper in testpapers | filter: sub.Id | filter: cls.Id | filter: board.Id track by $index" style="position: relative;float: left;width: 15%;" class="col-md-4 col-sm-6 col-xs-12">
+            <a href="">
+                <div ng-click="add(paper)">
+                    <img style="border: 4px solid #fff; margin:5px;" ng-src="{{paper.image}}" />
+                    <div style="left: 8px; position: relative;margin-bottom: 9px;">
+                        <b > {{paper.name}}</b> <br>
+                        <span ng-if="paper.price !='0'">₹ {{paper.price}}</span>
+                        <span ng-if="paper.price =='0'">Demo</span>
+                    </div>
+                </div> 
+            </a>
+        </div>
+   </div>
+</div>

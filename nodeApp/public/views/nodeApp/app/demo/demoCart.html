@@ -1,0 +1,81 @@
+<style>
+#content>.row {
+    margin: 0;
+}
+</style>
+<header id="pageheader">
+    <section class="col-sm-10">
+        <div class="pageheadertitle">Checkout Cart</div>
+    </section>
+</header>
+<div id="content-header">
+    <section class="col-sm-2">
+        <!-- <a class="btn bg-color-teal" style="color:#ccc;font-weight:bold">Topics</a> -->
+        <a href="javascript:void(0); " class="btn btn-default shop-btn">
+            <i class="fa fa-1x fa-shopping-cart "></i>
+            <span class="air air-top-right label-danger txt-color-white padding-3 ">{{itemNum || 0}}</span>
+        </a>
+    </section>
+    <section class=" col-sm-offset-6 col-sm-4">
+        <!-- <a class="btn bg-color-teal" style="color:#ccc;font-weight:bold">Topics</a> -->
+        <a ui-sref="app.demo" class="btn btn-warning pull-right">
+            <i class="fa fa-arrow-left"></i>
+            <span>Go Back </span>
+        </a>
+    </section>
+</div>
+<div id="content">
+    <section widget-grid id="widget-grid">
+        <div class="row">
+            <article class="col-sm-12">
+                <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+                    <div>
+                        <div class="widget-body no-padding">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Test Name / Cash Card</th>
+                                            <th>Special Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="paper in testpapers | filter: query | filter: selectPrice | itemsPerPage : 10  track by $index">
+                                            <td>{{ $index+1 }}</td>
+                                            <td>{{paper.name}}</td>
+                                            <td>₹  {{paper.price}}</td>
+                                            <td>
+                                                <div class="btn-group pull-right">
+                                                    <button ng-click="removeFromCart(paper)" class="btn btn-danger removeBtn"> <i class="fa fa-remove"></i> Remove</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <dir-pagination-controls ng-show="testpapers.length > 10">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <form id="smart-form-register" name="formName" class="smart-form" novalidate>
+        <fieldset>
+            <section class="col-sm-12">
+                <label class="col-sm-3 pull-right">
+                    <h2 class="pull-right">Total Bill : ₹  {{ bill}}</h2>
+                </label>
+            </section>
+        </fieldset>
+        <footer>
+            <button class="btn btn-success btn-lg" ng-click="checkout()" ng-hide="bill.final == 0">Checkout </button>
+        </footer>
+    </form>
+</div>
+ <ng-include src="'/app/demo/demoLogin.html'" > </ng-include>  
+
+

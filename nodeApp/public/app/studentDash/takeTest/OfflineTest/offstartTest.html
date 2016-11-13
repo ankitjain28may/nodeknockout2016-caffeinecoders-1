@@ -1,0 +1,281 @@
+<link rel="stylesheet" type="text/css" href="/app/test/custom.css">
+<header id="pageheader" style="margin-bottom: 0;">
+    <section class="col-sm-4">
+        <div class="pageheadertitle">{{testpaper.testPaperName}}</div>
+    </section>
+    <section class="col-sm-2">
+        <span class="toggleMenu" ng-click="toggleMenu =!toggleMenu" ng-class="{'toggleMenu-active': toggleMenu,'toggleMenu-normal':!toggleMenu}"><li class="fa fa-reorder"></li></span>
+    </section>
+    <section class="col-sm-6">
+        <p class="sideData pull-right"><strong> Total Time Elapsed :</strong> {{ pc | secondsToDateTime | date:'HH:mm:ss'}} out of {{ testpaper.totalTime | secondsToDateTime | date:'HH:mm:ss'}} &nbsp; &nbsp; &nbsp; <strong>Questions Attempted :</strong> <i>{{QuesNoAttempted}} out of {{testpaper.totalQuestions}}</i> </p>
+    </section>
+</header>
+<div id="content-header">
+    <!--     <section class="col-sm-2">
+        <div class="btn-group btn-group-justified">
+            <a class="btn bg-color-magenta" style="color:#ccc;font-weight:bold">Pause Test</a>
+        </div>
+    </section>
+    <section class="col-sm-2">
+        <a ng-if="$scope.attempted >= $scope.questions.length/2" class="btn bg-color-redLight" ng-href="#/admin/manage-online-test/import" style="color:#ccc;font-weight:bold">View Test Report</a>
+    </section>
+</div> -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-sm-2 col-md-2">
+                </section>
+                <!--             <section class="col-sm-6 col-md-6xs">
+                <p style="font-size:22px;" class="pull-right">Total Time Elapsed : <b>{{ pc | secondsToDateTime | date:'HH:mm:ss'}} - out of {{ testpaper.totalTime | secondsToDateTime | date:'HH:mm:ss'}} </b></p>
+            </section> -->
+            </div>
+            <div class="row testContainer">
+                <article class="col-sm-5 col-md-3 sidebar-fixed" ng-show="!toggleMenu">
+                    <!-- <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+                    <div>
+                        <div class="widget-body no-padding">
+                            <div class="table-responsive">
+                                <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                                    <thead>
+                                        <tr>
+                                            <th data-sort-ignore="true">
+                                                Question Topic
+                                            </th>
+                                            <th data-sort-ignore="true" style="display: none;" data-hide="all"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="q in questions" style="background:{{q.Color}}" my-directive>
+                                            <td class="footable-visible footable-first-column">{{ getSubject(q.topicID) }}</td>
+                                            <td style="display: none;">
+                                                <section class="col-xs-12 col-sm-12 col-md-12">
+                                                    <div ng-hide="q.Attempted == 'true'">
+                                                        <div class="col-md-10 ">
+                                                            <div>
+                                                                <h5>{{q.questionDescription}}</h5></div>
+                                                        </div>
+                                                        <a class="btn btn-primary btn-lg pull-right attemptBtn" ng-click="openQuestion(q)">Attempt</a>
+                                                    </div>
+                                                </section>
+                                                <section class="col-xs-12 col-sm-12 col-md-12" ng-show="q.Attempted == 'true'">
+                                                    Attempted
+                                                </section>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="hide-if-no-paging">
+                                        <tr>
+                                            <td colspan="6" align="center">
+                                                <ul class="pagination"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                    <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+                        <div>
+                            <div class="widget-body no-padding">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Question Topic</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="q in questions | orderBy : questionOrder" ng-class="{'bg-color-greenLight': q.Attempted == 'true'}" ng-click="!unAttempted.length == 0 || userAttempting || openQuestion(q)">
+                                                <td>{{ $index+1 }}</td>
+                                                <td>{{ getSubject(q.topicID) }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="mainContent" ng-class="{'col-sm-12 col-md-12': toggleMenu,'col-sm-7 col-md-9':!toggleMenu}">
+                    <!-- <div class="col-md-12 col-centered" style=" font-size: 24px;">{{testpaper.testPaperName }}</div>
+                <br> -->
+                    <div id="with-paging-widget" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-color="orange" data-jarvis-widget class="testPaper" ng-show="userAttempting">
+                        <header>
+                            <h2><strong>Question {{QuesNo}} </strong> </h2>
+                            <div class="widget-toolbar">
+                                Time: {{ ques.timeAlotted | secondsToDateTime | date:'HH:mm:ss'}}
+                            </div>
+                            <div class="widget-toolbar">
+                                Marks: {{ques.maxMarks}}
+                            </div>
+                        </header>
+                        <div>
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+                                <p class="alert alert-success"> <strong><i class="fa fa-clock-o"></i>  Time Elapsed : </strong>{{ quc | secondsToDateTime | date:'HH:mm:ss'}}
+                                    <a class="pull-right" style="font-weight:bold" ng-click="pauseTest()">Pause Test</a> </p>
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.questionImg}}.gif" ng-hide="ques.questionImg === ''">
+                                        <p class="padding-10" style="font-size:16px;" ng-bind-html="ques.questionText"></p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-warning pull-right" ng-disabled="quc < ques.timeAlotted/2" ng-click="showOptions = true" ng-cloak>Reveal Options</button>
+                                        <!-- ng-disabled="quc < ques.timeAlotted/2" -->
+                                    </div>
+                                </div>
+                                <div class="widget-footer test-info hidden">
+                                    <p class="pull-left">Total Time Elapsed : {{ quc | secondsToDateTime | date:'HH:mm:ss'}} - out of {{ testpaper.totalTime | secondsToDateTime | date:'HH:mm:ss'}}</p>
+                                    <p class="pull-right">Questions Attempted : <i>{{QuesNoAttempted}} out of {{testpaper.totalQuestions}}</i> </p>
+                                </div>
+                                <div class="alert alert-success fade in" ng-if="ques.answer == 'correct'" ng-cloak>
+                                    <button class="close" data-dismiss="alert">
+                                        ×
+                                    </button>
+                                    <i class="fa-fw fa fa-check"></i>
+                                    <strong>Correct Answer!</strong>
+                                </div>
+                                <div class="alert alert-danger fade in" ng-if="ques.answer == 'wrong'" ng-cloak>
+                                    <button class="close" data-dismiss="alert">
+                                        ×
+                                    </button>
+                                    <i class="fa-fw fa fa-times"></i>
+                                    <strong>Wrong Answer!</strong>
+                                </div>
+                               <div class="alert alert-info fade in" ng-if="attempt == 1 && ques.answer == 'wrong'" ng-cloak>
+                                    <button class="close" data-dismiss="alert">
+                                        ×
+                                    </button>
+                                    <i class="fa-fw fa fa-info"></i>
+                                    <span class="startBeg">
+                                        <strong>Tips : </strong><img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.tipsImg}}.gif"> {{ques.tipsText}}
+                                    </span>
+                                </div>
+                                <div class="alert alert-success fade in" ng-if="ques.answer == 'correct' || (ques.answer == 'wrong' && attempt == 2)" ng-cloak>
+                                    <button class="close" data-dismiss="alert">
+                                        ×
+                                    </button>
+                                    <span class="startBeg">
+                                        <i class="fa-fw fa fa-check"></i>Solution :
+                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.ansImg}}.gif">
+                                        <strong ng-bind-html="ques.ansText"></strong>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                            <!-- widget content -->
+                            <br>
+                            <div class="widget-body no-padding">
+                                <form class="smart-form" ng-show="showOptions" ng-cloak>
+                                    <!-- ng-show="showOptions" -->
+                                    <header>
+                                        Options :
+                                    </header>
+                                    <fieldset>
+                                        <!--<fieldset ng-show="quc > ques.timeAlotted/2" ng-cloak> -->
+                                        <section>
+                                            <div class="row">
+                                                <div class="col col-2">
+                                                </div>
+                                                <div class="col col-8">
+                                                    <label class="radio">
+                                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.AImg}}.gif">
+                                                        <input type="radio" name="radio" ng-model="selectedOption" value="A"> <i></i><span ng-bind-html="ques.AText"></span></label>
+                                                    <hr>
+                                                    <label class="radio">
+                                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.BImg}}.gif">
+                                                        <input type="radio" name="radio" ng-model="selectedOption" value="B"> <i></i><span ng-bind-html="ques.BText"></span></label>
+                                                    <hr>
+                                                    <label class="radio">
+                                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.CImg}}.gif">
+                                                        <input type="radio" name="radio" ng-model="selectedOption" value="C"> <i></i><span ng-bind-html="ques.CText"></span></label>
+                                                    <hr>
+                                                    <label class="radio">
+                                                        <img ng-src="http://139.59.27.209:5000/images/{{ques.testpaperID}}/{{ques.Dimg}}.gif">
+                                                        <input type="radio" name="radio" ng-model="selectedOption" value="D"> <i></i><span ng-bind-html="ques.Dtext"></span></label>
+                                                    <hr>
+                                                    <label class="radio">
+                                                        <input type="radio" name="radio" ng-model="selectedOption" value="E"> <i></i><span ng-bind-html="ques.Etext"></span></label>
+                                                    <!-- </div> -->
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </fieldset>
+                                </form>
+                                <div class="widget-footer test-info-footer" ng-show="showOptions">
+                                    <div class="pull-left">
+                                        <form class="smart-form">
+                                            <label class="toggle state-success guessLabel">
+                                                <strong>Is this a guess ?</strong>
+                                                <input ng-disabled="quc < ques.TimeAlotted/2" type="checkbox" name="guessRadio" checked="checked" ng-model="ques.guess">
+                                                <i data-swchon-text="Yes" data-swchoff-text="No"></i>
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <p class="pull-right"> </p>
+                                </div>
+                                <div class="test-box">
+                                    <form class="smart-form">
+                                        <fieldset>
+                                            <section>
+                                                <label class="label">How difficult is the question for you?</label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="radio-inline">
+                                                        <i></i>Very Difficult</label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="radio-inline">
+                                                        <i></i>Difficult</label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="radio-inline" checked="checked">
+                                                        <i></i>Moderate</label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="radio-inline">
+                                                        <i></i>Easy</label>
+                                                </div>
+                                            </section>
+                                        </fieldset>
+                                    </form>
+                                    <form class="smart-form">
+                                        <div class="row">
+                                            <div class="col col-md-5 col-sm-5">
+                                            </div>
+                                            <div class="col col-md-2 col-sm-2">
+                                                <button ng-hide="ques.answer == 'correct' || attempt == 2" ng-disabled="quc < ques.TimeAlotted/2" class="btn btn-success btn-block btn-sm" ng-click="checkAnswer()" ng-cloak>Submit</button>
+                                                <button ng-show="ques.answer == 'correct' || (ques.answer == 'wrong' && attempt == 2)" class="btn btn-primary btn-block btn-sm" ng-click="selectQues()" ng-cloak>Next Question</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                        <!-- end widget div -->
+                    </div>
+                    <div id="with-paging-widget" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-color="orange" data-jarvis-widget class="testPaper" ng-hide="userAttempting">
+                        <header>
+                            <h2>Topic : <strong>{{getSubject(ques.topicID)}}</strong> </h2>
+                            <h2 class="pull-right" ng-click="pauseTest()">Pause Test &nbsp;&nbsp;&nbsp;</h2>
+                        </header>
+                        <div class="text-center padding-10">
+                            <!-- <h1>{{getSubject(ques.topicID)}}</h1> -->
+                            <h4>Question Description</h4>
+                            <hr>
+                            <h2>{{ques.questionDescription}}</h2>
+                            <div ng-hide="unAttempted.length == 0">
+                                <button class="btn btn-primary" ng-disabled="!ques.questionDescription.length" ng-click="userAttempting = true" ng-cloak>Attemt Question</button>
+                                <button class="btn btn-warning" ng-disabled="!ques.questionDescription.length" ng-click="circulateQues()" ng-cloak>Next Question</button>
+                            </div>
+                            <a ng-href="{{testpaper.report}}" ng-show="unAttempted.length == 0" target="_blank" class="reportBtn btn btn-success">View Report</a>
+                        </div>
+                        <br>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>

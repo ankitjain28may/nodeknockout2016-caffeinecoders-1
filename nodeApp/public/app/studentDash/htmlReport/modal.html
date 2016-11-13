@@ -1,0 +1,28 @@
+
+        <div class="modal-header">
+            <h3 class="modal-title">{{data.type}}</h3>
+        </div>
+        <div class="modal-body">
+            <div ng-show="data.type == 'Tips'" style="background: #fff; color: #000;padding: 5px;">
+                <p ng-show="data.question.tipsText"><span style="font-size:16px;" ng-bind-html="data.question.tipsText"></span></p>
+                <img style="max-width:500px;" ng-src="http://139.59.27.209:5000/images/{{data.question.testpaperID}}/{{data.question.tipsImg}}.gif">
+                <!-- ng-show="question.tipsImg" -->
+            </div>
+            <div ng-show="data.type == 'Solution'" style="background: #fff; color: #000;padding: 5px;">
+                <p ng-show="data.question.ansText"><span style="font-size:16px;" ng-bind-html="data.question.ansText"></p>
+                <img style="max-width:500px;" ng-src="http://139.59.27.209:5000/images/{{data.question.testpaperID}}/{{data.question.ansImg}}.gif">
+                <!-- ng-show="question.ansImg" -->
+            </div>
+            <div ng-show="data.type == 'Theory'">
+                <iframe ng-src="{{data.question.theoryLink}}"></iframe>
+            </div>
+            <div ng-show="data.type == 'Video'">
+                <video width="400" controls>
+                    <source ng-src="{{data.question.videoLink}}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>

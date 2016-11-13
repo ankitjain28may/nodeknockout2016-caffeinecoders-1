@@ -1,0 +1,33 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Cash Card', 'Buy ']" icon="table"
+                     class="col-sm-6"></big-breadcrumbs>
+<div>
+    <section class="col-sm-6">
+      <a ui-sref="app.student.cart" class="btn btn-default shop-btn pull-right">
+        <i class="fa fa-1x fa-shopping-cart"></i>
+        <span class="air air-top-right label-danger txt-color-white padding-3 ">{{itemNum || 0}}
+        </span>
+      </a>
+    </section>
+</div>  
+</div>
+
+<div style="padding-top: 35px;">
+    <div class="row" style="margin: 0 auto">
+        <div ng-repeat="coupon in couponData track by $index" style="margin: 10px 20px; width: 300px; position: relative; float: left; border: 4px solid #fff;">
+            <!-- product class="product-content product-wrap clearfix" style="padding:0px !important;" class="col-xs-12 " class="name "  class="description"-->
+            <div style="background-image: url(/styles/img/cashcard1.png); width: 100%; height: 161px; "><img style="width: 100%; height: 100%; " src="/styles/img/cashcard1.png" />
+                <div style="position: absolute; transform: rotateZ(-90deg); top: 20px; right: -10px; font-weight: 700; font-size: 35px; ">
+                    ₹ {{coupon.price}}
+                </div>
+                <div style="position: absolute; bottom: 5px; right: 4px; font-weight: 700; font-size: 32px;">
+                    <button type="button" class="btn btn-success" style="border-color: #f7f30b; background: rgba(239, 235, 22, 0.9); font-size: 21px; padding:5px;" ng-click="add(coupon)">
+                        Buy</button>
+                </div>
+            </div>
+            <!-- class="product-info smart-form" -class="btn btn-success pull-right" -->
+            <!-- end product -->
+        </div>
+    </div>
+</div>

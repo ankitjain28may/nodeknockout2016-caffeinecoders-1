@@ -1,0 +1,503 @@
+<div id="content">
+<div class="row">
+    <big-breadcrumbs items="['Profile', 'Student ']" icon="table"
+                     class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
+</div>
+<div jarvis-widget id="wid-id-7" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false"
+data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+<header style="height: 38px;">
+    <ul class="nav nav-tabs pull-left in">
+
+
+        <li  ng-class="{'active': active1}" ng-init="active1 =! active1"><a ><span style="font-size: 125%" class="hidden-mobile hidden-tablet"> About You </span> </a></li>
+
+        <li ng-class="{'active': active2}" ><a ><span class="hidden-mobile hidden-tablet" style="font-size: 125%"> About Your Parents  </span> </a></li>
+
+        <li ng-class="{'active': active3}" ><a ><span class="hidden-mobile hidden-tablet" style="font-size: 125%"> About Your School  </span> </a></li>
+
+        <li ng-class="{'active': active4}"><a ><span class="hidden-mobile hidden-tablet" style="font-size: 125%">Personal Details</span> </a></li>
+
+    </ul>
+</header>
+<!-- widget div-->
+<div>
+
+    <!-- widget edit box -->
+    <!-- end widget edit box -->
+
+    <!-- widget content -->
+    <div class="widget-body">
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="hr1">
+<!-- <<<<<<< HEAD
+                <table style="width:100%">
+                   <tr><td></td>
+                    <td>
+                        <div >
+                            <img class="thumb" ng-src="{{stepsModel}}" />
+                        </div>
+                        <div>
+                            <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)"/>
+                        </div></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td>  <div class="form-group">
+                            <label for="title" class="control-label">First Name</label>
+                            <input type="text" ng-model="student.firstName" class="form-control" id="title" placeholder="Student First Name">
+                        </div></td>
+                        <td>  <div class="form-group">
+                            <label for="title" class="control-label">Middle Name</label>
+                            <input type="text" ng-model="student.middleName" class="form-control" id="title" placeholder="Student Middle Name">
+                        </div></td>
+                        <td>    <div class="form-group">
+                            <label for="title" class="control-label">Last Name</label>
+                            <input type="text"ng-model="student.lastName" class="form-control" id="title" placeholder="Student Last Name">
+                        </div></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>  <div class="form-group">
+                            <label for="title" class="control-label">Email</label>
+                            <input type="text" ng-model="student.email" class="form-control" id="title" placeholder="Enter the Email Id.">
+                        </div></td>
+                        <td>  <div class="form-group">
+                            <label for="title" class="control-label">Mobile Number</label>
+                            <input type="text" ng-model="student.phone" class="form-control" id="title" placeholder="Enter Mobile Number">
+                        </div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="font-size:20px;"> <hr>YOUR ADDRESS</td>
+                    </tr>
+                    <tr>
+                        <td> <div class="form-group">
+                            <label class="select">Country</label>
+                            <select class="form-control" ng-model="student.country">
+                                <option value="">Select Your Country</option>
+                                <option value="india">INDIA</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label class="select">State</label>
+                            <select class="form-control" ng-disabled="!student.country" name="state" ng-change="getCities()" ng-model="student.state" required
+                            ng-options="s.ID as s.Name for s in states">
+                            <option value="">Select Your State</option>
+                        </select>
+                    </div>
+                </td>
+                <td> <div class="form-group">
+                    <label class="select">City</label>
+                    <select class="form-control" name="city" ng-model="student.city" required ng-options="c.city as c.city for c in cities">
+                        <option value="">Select Your City</option>
+                    </select>
+                </div></td>
+            </tr>
+            <tr>
+
+                <td> <div class="form-group">
+                    <label for="title" class="control-label">No. & Street</label>
+                    <input type="text" ng-model="student.street" class="form-control" id="title" placeholder="Enter Your No. & Street">
+                </div></td>
+                <td> <div class="form-group">
+                    <label for="title" class="control-label">Neighbour</label>
+                    <input type="text" ng-model="student.neighbour" class="form-control" id="title" placeholder="Enter Your Neighbour">
+                </div></td>
+                <td> <div class="form-group">
+                    <label for="title" class="control-label">PIN Code</label>
+                    <input type="text" ng-model="student.postalCode" class="form-control" id="title" placeholder="Enter Your PIN Code ">
+                </div></td>
+            </tr>
+        </table>
+        <br>
+    </div>
+
+    <div class="tab-pane" id="hr2">
+=======
+            -->     <form id="smart-form-register" name="formName" ng-submit="saveUser(formName)" >
+                    <table style="width:100%">
+                     <tr><td></td>
+                        <td>
+                            <div >
+                                <img class="thumb" ng-src="{{stepsModel}}" />
+                            </div>
+                            <div>
+                                <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)"/>
+                            </div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>  <div class="form-group">
+                                <label for="title" class="control-label">First Name</label>
+                                <input type="text" ng-model="student.firstName" class="form-control" id="title" required placeholder="Student First Name" >
+                            </div></td>
+                            <td>  <div class="form-group">
+                                <label for="title" class="control-label">Middle Name</label>
+                                <input type="text" ng-model="student.middleName" class="form-control" id="title" placeholder="Student Middle Name">
+                            </div></td>
+                            <td>    <div class="form-group">
+                                <label for="title" class="control-label">Last Name</label>
+                                <input type="text" ng-model="student.lastName" class="form-control" id="title" required placeholder="Student Last Name" >
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>  <div class="form-group">
+                                <label for="title" class="control-label">Email</label>
+                                <div ng-show="student.email.length<0">
+                                    <input type="text" ng-model="student.email" class="form-control" id="title" placeholder="Enter the Email Id." required>
+                                </div>
+                                <div ng-show="student.email.length>0">
+                                    <input type="text" ng-model="student.email" class="form-control" id="title" readonly>
+                                </div>
+                            </div></td>
+                            <td>  <div class="form-group">
+                                <label for="title" class="control-label">Mobile Number</label>
+                                <input type="number" ng-model="student.phone" class="form-control" id="title" placeholder="Enter Mobile Number" required>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-size:20px;"> <hr>YOUR ADDRESS</td>
+                        </tr>
+                        <tr>
+                            <td> <div class="form-group">
+                                <label class="select">Country</label>
+                                <select class="form-control" ng-model="student.country" ng-change="ondataChangeCountry()" ng-options="s.Id as s.Name for s in countrylist">
+                                    <option value="">Select Your Country</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label class="select">State</label>
+                                <select class="form-control" name="state" ng-change="ondataChangeState()" ng-model="student.state" required
+                                ng-options="s.Id as s.Name for s in states">
+                                <option value="">Select Your State</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td> <div class="form-group">
+                        <label class="select">City</label>
+                        <select class="form-control" name="city" ng-model="student.city" required ng-options="c.Id as c.Name for c in cities">
+                            <option value="">Select Your City</option>
+                        </select>
+                    </div></td>
+                </tr>
+                <tr>
+
+                    <td> <div class="form-group">
+                        <label for="title" class="control-label">No. & Street</label>
+                        <input type="text" ng-model="student.street" class="form-control" id="title" required placeholder="Enter Your No. & Street">
+                    </div></td>
+                    <td> <!-- <div class="form-group">
+                        <label for="title" class="control-label">Neighbour</label>
+                        <input type="text" ng-model="student.neighbour" class="form-control" id="title" required placeholder="Enter Your Neighbour">
+                    </div> --></td> 
+                    <td> <div class="form-group">
+                        <label for="title" class="control-label">PIN Code</label>
+                        <input type="text" ng-model="student.postalCode" class="form-control" id="title" required placeholder="Enter Your PIN Code ">
+                    </div></td>
+                </tr>
+            </table>
+            <br>
+            <div class="row">
+                <!-- ----------------------------------------------------------------------------------- -->
+
+                <section  class="col col-sm-4 pull-right">
+                    <button type="submit" data-toggle="tab" ng-disabled="formName.$invalid" href = "#hr2" 
+                    ng-click="save(); active2 =!active2; active1 = !active1" class="btn btn-primary">Save & Next</button>
+                </section>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="tab-pane" id="hr2">
+     <form id="smart-form-register" name="formName2" ng-submit="saveUser(formName)" data-smart-registration-form>
+        <table style="width:100%">
+            <tr><td style="font-size:20px; font-weight:Bold;">Your MOTHER</td></tr>
+            <tr>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">First Name</label>
+                    <input type="text" ng-model="student.motherFirstName" class="form-control" id="title" placeholder="Mother's First Name">
+                </div></td>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Middle Name</label>
+                    <input type="text" ng-model="student.motherMiddleName" class="form-control" id="title" placeholder="Mother's Middle Name">
+                </div></td>
+                <td>    <div class="form-group">
+                    <label for="title" class="control-label">Last Name</label>
+                    <input type="text" ng-model="student.motherLastName" class="form-control" id="title" placeholder="Mother's Last Name">
+                </div></td>
+            </tr>
+            <tr>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Email</label>
+                    <input type="text" ng-model="student.motherEmail" class="form-control" id="title" placeholder="Enter the Email Id.">
+                </div></td>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Mobile Number</label>
+
+                    <input type="number" ng-model="student.motherPhone" class="form-control" id="title" required placeholder="Enter Mobile Number">
+
+                </div></td>
+
+            </tr>
+            <tr><td style="font-size:20px; font-weight:Bold;">Your FATHER</td></tr>
+            <tr>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">First Name</label>
+                    <input type="text" ng-model="student.fatherFirstName" class="form-control" id="title" placeholder="Father's First Name">
+                </div></td>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Middle Name</label>
+                    <input type="text" ng-model="student.fatherMiddleName" class="form-control" id="title" placeholder="Father's Middle Name">
+                </div></td>
+                <td>    <div class="form-group">
+                    <label for="title" class="control-label">Last Name</label>
+                    <input type="text" ng-model="student.fatherLastName" class="form-control" id="title" placeholder="Father's Last Name">
+                </div></td>
+            </tr>
+            <tr>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Email</label>
+                    <input type="text" ng-model="student.fatherEmail" class="form-control" id="title" placeholder="Enter the Email Id.">
+                </div></td>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">Mobile Number</label>
+<!-- <<<<<<< HEAD
+                    <input type="text" ng-model="student.fatherPhone" class="form-control" id="title" placeholder="Enter Mobile Number">
+                </div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="tab-pane" id="hr3">
+        <table style="width:100%">
+            <tr>
+                <td>  <div class="form-group">
+                    <label for="title" class="control-label">School Name</label>
+                    <input type="text" ng-model="student.schoolName" class="form-control" id="title" placeholder="School Name">
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label for="title">Student of</label><br>
+                    {{student.Br}}
+                    <select class="form-control" ng-model="student.board">
+                        <option>Select Your Board</option>
+                        <option ng-repeat="option in student.board" value="{{option.id}}">{{option.name}}</option>
+                        <option value="other">OTHER</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group" ng-show="student.board == 'other'">
+                    <label class="radio-inline"></label>
+                    <input type="text"  ng-model="student.br" class="form-control" id="title" placeholder="Other">
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+======= -->
+                    <input type="number" ng-model="student.fatherPhone" class="form-control" id="title" required placeholder="Enter Mobile Number">
+                </div></td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <!-- ----------------------------------------------------------------------------------- -->
+
+            <section  class="col col-sm-4 pull-right    ">
+                <button data-toggle="tab" href="#hr1" ng-click="active2 =!active2; active1 = !active1" class="btn btn-primary">Previous</button>
+                <button data-toggle="tab" ng-disabled="formName2.$invalid" href = "#hr3" ng-click="save(); active2 =!active2; active3 = !active3 " class="btn btn-primary">Save & Next</button>
+            </section>
+
+        </div>
+    </form>
+
+</div>
+<div class="tab-pane" id="hr3">
+    <form id="smart-form-register" name="formName3" ng-submit="saveUser(formName)" data-smart-registration-form>
+        <table style="width:100%">
+         <tr>
+            <td> <div class="form-group">
+                <label class="select">Country</label>
+                <select class="form-control" ng-model="student.schoolCountry" ng-change="schoolChangeCountry()" ng-options="s.Id as s.Name for s in schoolCountrylist">
+                    <option value="">Select Your Country</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label class="select">State</label>
+                <select class="form-control" ng-disabled="!student.schoolCountry" 
+                name="state" ng-change="schoolChangeState()" ng-model="student.schoolState" required
+                ng-options="s.Id as s.Name for s in schoolStates">
+                <option value="">Select Your State</option>
+            </select>
+        </div>
+    </td>
+    <td> <div class="form-group">
+        <label class="select">City</label>
+        <select class="form-control" name="city" ng-model="student.schoolCity" 
+
+        ng-options="c.Id as c.Name for c in schoolCities">
+        <option value="">Select Your City</option>
+    </select>
+</div></td>
+</tr>
+<tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="select">School Name</label>
+                                        <select class="form-control" name="schoolname" required ng-model="student.schoolID">
+                                            <!-- ng-options="c.userID as c.schoolName for c in schools" -->
+                                            <option value="">Select Your School</option>
+                                            <option value={{school.userID}}  ng-repeat="school in schools">{{school.schoolName}}</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" ng-show="student.schoolID == 'other'">
+                                        <label class="radio-inline"></label>
+                                        <input type="text" ng-model="student.schoolName" required class="form-control" id="title" placeholder="Enter your school name">
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div class="form-group">
+                                        <label class="select">Class</label>
+                                        <select class="form-control" name="class" required ng-model="student.classID" ng-change="ondataChangeClass()" ng-options="c.classID as c.className for c in classes" >
+                                            <option value="">Select Your Class</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="select">Section</label>
+                                        <select class="form-control" name="class" required ng-model="student.sectionID" ng-options="c._id as c.name for c in sections" >
+                                            <option value="">Select Your Section</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+<tr>
+    <td> <div class="form-group">
+        <label for="title" class="control-label">Email</label>
+        <input type="text" ng-model="student.schoolEmail" class="form-control" id="title" placeholder="Enter Your Email">
+    </div></td>
+    <td>  <div class="form-group">
+        <label for="title" class="control-label">Mobile Number</label>
+
+        <input type="number" required ng-model="student.schoolPhone" class="form-control" id="title" placeholder="Enter Your Mobile Number">
+    </div></td>
+</tr>
+</table>
+<div class="row">
+    <!-- ----------------------------------------------------------------------------------- -->
+
+    <section  class="col col-sm-4 pull-right    ">
+        <button data-toggle="tab" href="#hr2" ng-click="active2 =!active2; active3 = !active3" class="btn btn-primary">Previous</button>
+        <button data-toggle="tab" ng-disabled="formName3.$invalid" href = "#hr4" ng-click="save(); active4 =!active4; active3 = !active3 " class="btn btn-primary">Save & Next</button>
+    </section>
+
+</div>
+</div>
+
+
+<div class="tab-pane" id="hr4">
+    <table style="width:100%">
+
+        <tr>
+            <td style=" width: 33%;"> <div class="form-group">
+                <label for="title" class="control-label">Gender</label>
+                <br>
+                <form class="smart-form">
+                    <label class="select">
+                        <select ng-model="student.gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select> <i></i></label>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                                        <label class="control-label">Religion</label>
+                                        <select class="form-control" name="religion" ng-model="student.religion" required ng-options="r.Religion as r.Religion for r in religions">
+                                            <option value="">Select Your Religion</option>
+                                        </select>
+                                
+                 </div>
+                </td>
+                <td><div class="form-group">
+                                        <label class="control-label">Caste</label>
+                                        <select class="form-control" name="caste" ng-model="student.caste" required ng-options="c.Caste as c.Caste for c in castes">
+                                            <option value="">Select Your Caste</option>
+                                        </select>
+                    </div></td>
+
+                </tr>
+                <tr>
+                    
+                        <td> <div class="form-group">
+                            <label for="title" class="control-label">Mother's Highest Education</label>
+                            <form class="smart-form">
+                                <label class="select">
+                                    <select ng-model="student.motherEducation" required>
+                                        <option value="under_class_Vii">Under Class VIII</option>
+                                        <option value="class_Vii">Class VIII</option>
+                                        <option value="class_X">Class X</option>
+                                        <option value="class_Xii">Class XII</option>
+                                        <option value="BA/BCs_or_equivalent">BA/BSc or equivalent</option>
+                                        <option value="MA/MSc_or_equivalent">MA/MSc or equivalent</option>
+                                        <option value="PhD_or_Professional">PhD or Professional</option>
+                                    </select> <i></i></label>
+                                </form>
+                            </div></td>
+                            <td>
+                                    <!-- <div>
+                                                 <label for="title" class="control-label">Date of Birth</label>
+                                            <a href="form-x-editable.html#" id="dob" smart-xeditable data-ng-model="student.dob" data-options="editableOptions" data-type="combodate" data-value="1984-05-15" data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1" data-original-title="Select Date of birth" class="editable editable-click">{{combodate}}</a>
+                                        </div>  -->
+                                    <div class="form-group">
+                                        <label for="title" class="control-label">Date of Birth</label>
+                                        <input type="text" ng-model="student.dob" class="form-control" id="title" data-smart-masked-input="99/99/9999" data-mask-placeholder="-" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="control-label">Mother Tongue</label>
+                                        <select class="form-control" name="mothertongue" ng-model="student.mothertongue" required ng-options="mt.Language as mt.Language for mt in languages">
+                                            <option value="">Select Your Mother-Tongue</option>
+                                        </select>
+                                    </div>
+                                </td>
+              </tr>
+          </table>
+          <div class="row">
+            <!-- ----------------------------------------------------------------------------------- -->
+
+            <section  class="col col-sm-4 pull-right    ">
+                <a data-toggle="tab" href="#hr3" ng-click="active4 =!active4; active3 = !active3" class="btn btn-primary">Previous</a>
+                <button data-toggle="tab" ng-disabled="formName4.$invalid" ng-click="save()" class="btn btn-primary">Save</button>
+            </section>
+
+        </div>
+    </form>
+</div>
+
+</div>
+
+</div>
+<!-- end widget content -->
+
+</div>
+<!-- end widget div -->
+
+</div>

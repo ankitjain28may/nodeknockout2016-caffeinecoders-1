@@ -1,0 +1,273 @@
+<div id="content">
+    <div class="row">
+
+        <big-breadcrumbs items="['Student', 'Report']" icon="table" class="col-sm-4"></big-breadcrumbs>
+    </div>
+    <div>
+        <div class="panel panel-default" style="border:0px; margin-bottom: 0px !important;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <img src="http://thetargetplus.com/images/logo/target_plus_logo1.png" alt="Smiley face" style="    margin-left: 30%;width:80px">
+                    </div>
+                    <div class="col-sm-9 col-md-10 col-lg-10">
+                        <p><span>My PERSONAL TARGETS & SMART STRATEGIES</span></p>
+                        <p>The report is based on the principle of Compete with yourself! Study topics in sequence and according to stratergies as suggested below to go well beyond your 'present best'. </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        Student Name: <span style="font-weight: bold">&nbsp;&nbsp;{{studentData.fullname}}</span>
+                        <br>Class/Section: <strong>&nbsp;&nbsp;{{class.className}} / {{section.name}}</strong>
+                        <br>Teachers Name:&nbsp;&nbsp; {{studentData.teacherName}}
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        School Name:&nbsp;&nbsp;<b>{{school}}</b>
+                        <br>Principal Name:&nbsp;&nbsp;<b>{{schooldata.principalFirstName}}&nbsp;{{schooldata.principalLastName}}</b>
+                        <br>City & State:&nbsp;&nbsp;<b>{{city.Name}}, &nbsp;{{state.Name}}</b>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        Subject:&nbsp;&nbsp;<b>{{subject}}</b>
+                        <br>Paper Code:&nbsp;&nbsp;<b>{{testpaperid}}</b>
+                        <!--<br>Date: <b>[Date]</b>-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-sm-9 col-md-10 col-lg-10">
+                        Dear {{studentData.fullname}}:
+                        <br>This Personalized TARGETplus report is based on the principle of Compete With Yourself. History affirms people who compete with themselves, progress more. In order to compete with yourself, you need information at your fingertips. You are more capable than you know. If you work with your personal targets and stratergies as given below, you will sure excel beyond your imagination. Wish you all the best!
+                    </div>
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <b>www.mytargetplus.com</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-repeat="rdata in reportData.data">
+            <div ng-show="rdata.type =='GREEN'" class="row" style="background:rgba(144, 238, 144, 0.7); margin:5px; padding: 5px 0px;">
+                <div class="col-sm-3 col-md-3">
+                    <b>Target A: MAINTAIN WITH PRACTICE</b>
+                </div>
+                <div class="col-sm-7 col-md-7">
+                    STRATEGY:
+                    <div>There are topics you know well. To maintain your good scores in these topics you need to:
+                    </div>
+                    <div>1. Practice with a wider varity of qusetions than covered by this diagnstic exam.</div>
+                    <div>2. Solve past 10 year question papers, and in doing so, improve your speed and accuracy.
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" style="text-align: right;">
+                    <b>CONFIDENCE LEVEL <br>HIGH ( 80 - 100% )</b>
+                </div>
+            </div>
+            <div ng-show="rdata.type =='BLUE'" class="row" style="background:rgba(70, 218, 255, 0.7); margin:5px; padding: 5px 0px;">
+                <div class="col-sm-3 col-md-3">
+                    <b>Targets B: CONSOLIDATE</b>
+                </div>
+                <div class="col-sm-7 col-md-7">
+                    <div> STRATEGY :</div>
+                    <div>These are concepts you already know a lot about and can master on your own. you need to:
+                    </div>
+                    <div>1. Practice with different question types in these topics.</div>
+                    <div>2. solve past 10 year question paper, and in doing so, consolidate your skills.</div>
+                    <div>Use memory techniques to recall facts &amp; formulae. these are marks waiting for you.
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" style="text-align: right;">
+                    <b>CONFIDENCE LEVEL<br> MODERATE ( 60 - 80% )</b>
+                </div>
+            </div>
+            <div ng-show="rdata.type =='ORANGE'" class="row" style="background:rgba(255, 155, 79, 0.7); margin:5px; padding: 5px 0px;">
+                <div class="col-sm-3 col-md-3">
+                    <b>Targets C: UNDERSTAND</b>
+                </div>
+                <div class="col-sm-7 col-md-7">
+                    <div> STRATEGY :</div>
+                    <div> These are concept you need to put a little more effort into and may also need some
+                        <br> help with. You need to:
+                        <br> 1. Give extra time and effort to master these topics and skills.
+                        <br> 2. seeks the help of peers and teachers when you cannot solve somethings on you own.
+                        <br> 3. Use memory techniques to recall facts & formulae. These are marks waiting for you.
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" style="text-align: right;">
+                    <b>CONFIDENCE LEVEL<br> NOT YET ( 40 - 60% )</b>
+                </div>
+            </div>
+            <div ng-show="rdata.type =='PINK'" class="row" style="background:rgba(212, 157, 198, 0.7); margin: 5px; padding: 5px 0px;">
+                <div class="col-sm-3 col-md-3">
+                    <b>Targets D: GET STARTED</b>
+                </div>
+                <div class="col-sm-7 col-md-7">
+                    <div> STRATEGY :</div>
+                    <div>
+                        These concepts and skills you have the least confidence in but and will soon master
+                        <br> with a bit of effort.
+                        <br> 1. Study from below class level concepts that you are not yet confident in.
+                        <br> 2. Seek the help of peers and teachers when you cannot solve something on your own.
+                        <br> 3. Use memory techniques to recall facts &amp; formulae. These are marks waiting for you.
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2" style="text-align: right;">
+                    <b>CONFIDENCE LEVEL<br> UNKNOWN ( 0 - 40% )</b>
+                </div>
+            </div>
+            <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false" style="margin:0px !important;">
+                <div class="widget-body no-padding" style="margin: 0;text-align: left" ng-show="rdata.data.length">
+                    <div class="table-responsive">
+                        <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                            <thead style="margin: 0;text-align: left;">
+                                <tr>
+                                    <th data-sort-ignore="true" style="height: 75px;max-width:100px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Topic</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;max-width:150px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Descriptor</div></th>
+                                    <!--<th data-sort-ignore="true">Attempt</th>-->
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Attempt</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Guess</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Difficulty</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">MaxMarks</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">MarksGained</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">TimeAlloted</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">TimeTaken</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Tip</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Solution</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Theory</div></th>
+                                    <th data-sort-ignore="true" style="height: 75px;min-width:20px;"><div style=" -ms-transform: rotate(-60deg); /* IE 9 */ -webkit-transform: rotate(-60deg); /* Chrome, Safari, Opera */ transform: rotate(-60deg); padding-bottom: 5px;height: 1px;width: 1px;">Video</div></th>
+                                    <th data-sort-ignore="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in rdata.data" my-directive>
+                                    <td>{{data.topicName }}</td>
+                                    <td>{{data.questionDescription }}</td>
+                                    <td>{{data.firstAttemptStatus == "correct" ? "F" : data.secondAttemptStatus == "correct" ? "S" : "W"}}</td>
+                                    <td>{{data.guess == true ? "Yes" : "No"}}</td>
+                                    <td>{{data.difficulty || 'Moderate' }}</td>
+                                    <td>{{data.maxMarks }}</td>
+                                    <td>{{data.answer == "correct"? data.maxMarks : "0"}}</td>
+                                    <td>{{data.timeAlotted}}</td>
+                                    <td>{{data.answer == "correct"? data.firstAttemptTime : data.firstAttemptTime + data.secondAttemptTime}} Sec</td>
+                                    <td><button type="submit" ng-click="open(data,'Tips')" class="btn btn-primary">View</button></td>
+                                    <td><button type="submit" ng-click="open(data,'Solution')" class="btn btn-primary">View</button></td>
+                                    <td><button type="submit" ng-click="open(data,'Theory')" class="btn btn-primary">View</button></td>
+                                    <td><button type="submit" ng-click="open(data,'Video')" class="btn btn-primary">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="6" align="center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin:5px; padding: 5px 0px;">
+            <div class="text-center" style="background: #535353;height: 30px;
+    line-height: 30px;"> TARGETPlus SUMMARY REPORT</div>
+            <div class="row text-center" style="height: 30px; line-height: 30px;">
+                <div class="col-sm-4 col-md-4 col-lg-4 text-center"> TOTAL QUESTIONS: {{reportData.totalQuestions}}</div>
+                <div class="col-sm-4 col-md-4 col-lg-4 text-center"> TOTAL MARKS: {{reportData.totalMarks}}</div>
+                <div class="col-sm-4 col-md-4 col-lg-4 text-center">TOTAL TIME: {{reportData.totalTime}}</div>
+            </div>
+        </div>
+        <div jarvis-widget data-widget-color="darken" data-widget-deletebutton="false" data-widget-editbutton="false">
+            <div class="widget-body no-padding" style="margin: 0;">
+                <div class="table-responsive">
+                    <table class="table footable metro-blue" data-filter="#filter" data-before-filtering="filteringEventHandler">
+                        <thead>
+                            <tr>
+                                <th data-sort-ignore="true">FIRST ATTEMPT SUMMARY</th>
+                                <th data-sort-ignore="true">BUILD-UP ROUND SUMMARY</th>
+                                <th data-sort-ignore="true">COMBINED SUMMARY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr my-directive>
+                                <td>
+                                    <div class="pull-left">Correct</div>
+                                    <div class="pull-right">{{reportData.firstAttemptCorrect }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Correct</div>
+                                    <div class="pull-right">{{reportData.secondAttemptCorrect }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Correct</div>
+                                    <div class="pull-right">{{reportData.totalCorrect }} </div>
+                                </td>
+                            </tr>
+                            <tr my-directive>
+                                <td>
+                                    <div class="pull-left">Marks Earned</div>
+                                    <div class="pull-right">{{reportData.firstAttemptMarksEarned }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Marks Earned</div>
+                                    <div class="pull-right">{{reportData.secondAttemptMarksEarned }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Marks Earned</div>
+                                    <div class="pull-right">{{reportData.totalMarksEarned }} </div>
+                                </td>
+                            </tr>
+                            <tr my-directive>
+                                <td>
+                                    <div class="pull-left">% Marks Gained </div>
+                                    <div class="pull-right">{{reportData.firstAttemptPercetageGained | number : 2}} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">% Marks Gained </div>
+                                    <div class="pull-right">{{reportData.secondAttemptPercetageGained | number : 2}} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">% Marks Gained </div>
+                                    <div class="pull-right">{{reportData.totalPercentage | number : 2}} </div>
+                                </td>
+                            </tr>
+                            <tr my-directive>
+                                <td>
+                                    <div class="pull-left">Time Taken (hh:mm:ss)</div>
+                                    <div class="pull-right">{{reportData.firstAttemptTime }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Time Taken (hh:mm:ss)</div>
+                                    <div class="pull-right">{{reportData.secondAttemptTime }} </div>
+                                </td>
+                                <td>
+                                    <div class="pull-left">Time Taken (hh:mm:ss)</div>
+                                    <div class="pull-right">{{reportData.totalTimeTaken }} </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="hide-if-no-paging">
+                            <tr>
+                                <td colspan="6" align="center">
+                                    <ul class="pagination"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin:5px; padding: 5px 0px;">
+        <div class="text-center" style="background: #535353;height: 30px;
+    line-height: 30px;"> INTERPRETATION </div>
+        <div style="height: 60px; font-size: 14px;">
+            By gaining marks in the Build-Up Round, you have just added another {{reportData.secondAttemptPercetageGained}} % (from {{reportData.firstAttemptPercetageGained}} % to {{reportData.totalPercentage}} %). You realize how just within a few minutes of working with the TARGETplus mocks, you are able to correct on your mistakes, which may otherwise have taken you hours to fix on your own. The more TARGETplus assessments you take, the more marks you gain.
+        </div>
+    </div>
+    <div style="margin:5px; padding: 5px 0px;">
+        <div class="text-center" style="background: #535353;height: 30px;
+    line-height: 30px;"> NEXT STEPS </div>
+        <div style="height: 60px; font-size: 14px;">
+            You should now invest your time in preparing for the next TARGETplus Assessment according to the targets provided in your personalized Smart Study Plan as above. If you prepare according to the guidelines provided in this plan, you will be able to save time and increase your efficiency.
+        </div>
+    </div>
+    </article>
+</div>

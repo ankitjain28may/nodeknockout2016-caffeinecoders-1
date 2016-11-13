@@ -1,0 +1,29 @@
+<style>
+.ngdialog-theme-default {
+    padding-top: 80px !important;
+}
+
+.ngdialog-overlay {
+    right: 0 !important;
+}
+</style>
+<div class="no-padding">
+    <h1 class="text-center">
+        Assessment Modalities
+    </h1>
+    <hr>
+    <ol>
+        <li>MyTARGETplus provides a very adaptive platform to learn and improve upon your skills. The assessments are designed keeping in mind to help students improve upon their efficiency and performance. There are two methodologies for performing the assessments that will help you develop skill to excel at questions of different difficulty level.</li>
+        <li>Kindly choose any one out of the below mentioned methodologies.</li>
+    </ol>
+    <form id="smart-form-register" name="formName" class="smart-form" data-smart-registration-form>
+        <footer>
+            <button type="submit" class="btn btn-primary" ng-click="startTest(closeThisDialog,0)">
+                Sequential Order
+            </button>
+            <button type="submit" class="btn btn-warning" ng-click="startTest(closeThisDialog,1)">
+                Random Order
+            </button>
+        </footer>
+    </form>
+</div>
