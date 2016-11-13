@@ -121,10 +121,8 @@ angular.module('app.appViews', ['ui.router'])
                 }
             }
         })
-
-
         .state('app.appViews.timelineDemo', {
-            url: '/timeline',
+            url: '/timelineDemo',
             data: {
                 title: 'Timeline'
             },

@@ -1,7 +1,6 @@
 var es = require('event-stream');
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var connect = require('gulp-connect');
 var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
@@ -85,7 +84,7 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('prod', ['vendor', 'build']);
-gulp.task('dev', ['vendor', 'js', 'watch', 'connect']);
+gulp.task('dev', ['vendor', 'js', 'watch']);
 gulp.task('default', ['dev']);
 
 var swallowError = function(error) {

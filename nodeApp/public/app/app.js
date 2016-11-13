@@ -53,6 +53,7 @@ angular.module('app', [
         'angularUtils.directives.dirPagination',
         // 'ui.bootstrap',
         'angular.filter',
+        'app.main',
         '720kb.datepicker'
     ])
     .config(function($provide, $httpProvider, RestangularProvider) {

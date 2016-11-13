@@ -6,10 +6,11 @@ import subprocess
 cmds = [
     "git add .",
     "git commit -m ",
-    "git push origin master"
+    "git pull"
+    "git push origin develop"
 ]
 print("Enter a commit message or $ for manual git")
-commitMessage = "'" + raw_input().strip() + "'"
+commitMessage = "'" + input().strip() + "'"
 if commitMessage == "'$'":
     print("Manual Git selected")
 else:
